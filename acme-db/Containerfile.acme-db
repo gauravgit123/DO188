@@ -1,0 +1,23 @@
+# The base image is mariadb:latest
+# Accepts the following build arguments
+#    DB_ROOT_PASSWORD
+#    DB_ACME_DATABASE
+# Pass the following environment variables:
+#   Variable name: MARIADB_ROOT_PASSWORD 
+#   Variable value the value of DB_ROOT_PASSWORD
+# 
+#  Variable name: MARIADB_DATABASE-> Variable
+#  value the value of DB_ACME_DATABASE
+# 
+# Copies the file sql/acmeData.sql into the container
+#     directory /docker-entrypointinitdb.d
+
+FROM mariadb:latest
+
+ARG DB_ROOT_PASSWORD
+ARG DB_ACME_DATABASE
+
+ENV MARIADB_ROOT_PASSWORD=$DB_ROOT_PASSWORD
+ENV MARIADB_DATABASE=$DB_ACME_DATABASE
+
+COPY ./sql/acmeData.sql /docker-entrypointinitdb.d

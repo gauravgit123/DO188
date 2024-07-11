@@ -1,0 +1,9 @@
+# The base image is maridb:latest
+# Copies the script scripts/exporter.sh into /scripts
+# Defines the working directory as /scripts
+# The container starts by executing the script /scripts/
+# exporter.sh
+FROM mariadb:latest
+COPY ./scripts/exporter.sh /scripts
+WORKDIR /scripts
+CMD /scripts/exporter.sh
